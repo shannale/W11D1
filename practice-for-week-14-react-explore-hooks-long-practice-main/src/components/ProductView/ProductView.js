@@ -8,11 +8,23 @@ function ProductView({ products }) {
 
   // TODO: Replace with state variable
   const [sideOpen, setSideOpen] =  useState(true);
-  const [selectedProduct, setSelectedProduct] = useState({});
+  const [selectedProduct, setSelectedProduct] = useState({
+    details: [],
+    id: ""
+  });
 
   useEffect(() => {
-    if(selectedProduct) setSideOpen(true);
+    if(selectedProduct.id) setSideOpen(true);
   },[selectedProduct]);
+
+  useEffect(()=> {
+    if(sideOpen === false) {
+      setSelectedProduct({
+        details: [],
+        id: ""
+      })
+    }
+  }, [sideOpen]);
 
   return (
     <div className="product-view">
